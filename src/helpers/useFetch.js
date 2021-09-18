@@ -20,8 +20,6 @@ export const useFetch = (url) => {
         setState({
           list: data.results,
           count: data.count,
-          previus: data.previus,
-          next: data.next,
           loading: null,
           error: null,
         })

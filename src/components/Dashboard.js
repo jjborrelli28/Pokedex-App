@@ -4,12 +4,15 @@ import Grid from "@mui/material/Grid";
 import { useFetch } from "../helpers/useFetch";
 import PokeCard from "./PokeCard";
 import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
 
 export const Dashboard = () => {
-  const [page, setPage] = useState(
-    `https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20`
-  );
-  const { list, count, previus, next } = useFetch(page);
+  const [page, setPage] = useState({
+    url: `https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20`,
+    number: 1,
+  });
+
+  const { list, count, previus, next } = useFetch(page.url);
 
   const [pokemons, setPokemons] = useState(null);
 
@@ -23,11 +26,16 @@ export const Dashboard = () => {
     promises && Promise.all(promises).then((result) => setPokemons(result));
   }, [list]);
 
-  const handleChange = (e) => {
-    console.log(e.target);
-    setPage(next);
+  const handleChange = (event, value) => {
+    event.preventDefault();
+    setPage({
+      url: `https://pokeapi.co/api/v2/pokemon/?offset=${
+        (value - 1) * 20
+      }&limit=20`,
+      number: value,
+    });
   };
-  
+
   console.log(pokemons);
 
   return (
@@ -45,13 +53,16 @@ export const Dashboard = () => {
         )}
       </Grid>
       {pokemons && (
-        <Pagination
-          count={Math.ceil(count / 20)}
-          variant="outlined"
-          color="primary"
-          page={page}
-          onChange={handleChange}
-        />
+        <Stack spacing={2}>
+          <Pagination
+            count={Math.ceil(count / 20)}
+            variant="outlined"
+            color="primary"
+            page={page.number}
+            onChange={handleChange}
+            className="pagination"
+          />
+        </Stack>
       )}
     </Container>
   );

@@ -1,0 +1,16 @@
+.height-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.background-image-card {
+  background-color: #ebebeb;
+}
+
+.info-card {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+}
