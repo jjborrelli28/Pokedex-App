@@ -1,10 +1,16 @@
-.height-card {
+.card {
   height: 100%;
   display: flex;
   flex-direction: column;
 }
 
-.background-image-card {
+.card:hover {
+  cursor: pointer;
+  transition: transform 0.5s;
+  transform: scale(1.05);
+}
+
+.image-card {
   background-color: #ebebeb;
 }
 

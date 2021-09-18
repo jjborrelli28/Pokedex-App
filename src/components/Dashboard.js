@@ -5,6 +5,7 @@ import { useFetchList } from "../helpers/useFetchList";
 import PokeCard from "./PokeCard";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
+import banner from "../styles/components/pokedex.jpeg";
 
 export const Dashboard = () => {
   const [page, setPage] = useState({
@@ -40,7 +41,9 @@ export const Dashboard = () => {
 
   return (
     <Container>
-      <h1 className="title">Pokedex</h1>
+      <div className="banner">
+        <img src={banner} alt="banner" />
+      </div>
       <Grid container spacing={2}>
         {pokemons ? (
           pokemons.map((pokemon) => (

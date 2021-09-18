@@ -10,7 +10,10 @@ export default function PokeCard({ pokemon }) {
   return (
     <>
       {pokemon && (
-        <Card sx={{ maxWidth: 345 }} className="height-card">
+        <Card
+          sx={{ maxWidth: 345 }}
+          className="card animate__animated animate__fadeIn animate__slow "
+        gi>
           <CardMedia
             component="img"
             width="100%"
@@ -19,7 +22,7 @@ export default function PokeCard({ pokemon }) {
               "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLu88Fd9lg3AJXHPXuZB7J0wuCzxX2SJFxcA&usqp=CAU"
             }
             alt={pokemon.name}
-            className="background-image-card"
+            className="image-card"
           />
           <CardContent className="info-card">
             <div>
