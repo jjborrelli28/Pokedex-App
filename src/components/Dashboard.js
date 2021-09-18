@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
-import { useFetch } from "../helpers/useFetch";
+import { useFetchList } from "../helpers/useFetchList";
 import PokeCard from "./PokeCard";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
@@ -12,7 +12,7 @@ export const Dashboard = () => {
     number: 1,
   });
 
-  const { list, count } = useFetch(page.url);
+  const { list, count } = useFetchList(page.url);
 
   const [pokemons, setPokemons] = useState(null);
 
@@ -55,7 +55,7 @@ export const Dashboard = () => {
       {pokemons && (
         <Stack spacing={2}>
           <Pagination
-            count={Math.ceil(count / 20)}
+            count={count && Math.ceil(count / 20)}
             variant="outlined"
             color="primary"
             page={page.number}
