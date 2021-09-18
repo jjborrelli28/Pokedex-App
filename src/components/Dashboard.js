@@ -12,7 +12,7 @@ export const Dashboard = () => {
     number: 1,
   });
 
-  const { list, count, previus, next } = useFetch(page.url);
+  const { list, count } = useFetch(page.url);
 
   const [pokemons, setPokemons] = useState(null);
 
@@ -44,8 +44,8 @@ export const Dashboard = () => {
       <Grid container spacing={2}>
         {pokemons ? (
           pokemons.map((pokemon) => (
-            <Grid item md={3} sm={4} xs={12}>
-              <PokeCard pokemon={pokemon} />
+            <Grid item md={3} sm={4} xs={12} key={pokemon.name}>
+              <PokeCard pokemon={pokemon} key={pokemon.name} />
             </Grid>
           ))
         ) : (
