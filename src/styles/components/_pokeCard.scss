@@ -2,6 +2,8 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  background-color: transparent !important;
+  border-radius: 0.75rem !important;
 }
 
 .card:hover {
@@ -11,7 +13,7 @@
 }
 
 .image-card {
-  background-color: #ebebeb;
+  background-color: transparent !important;
 }
 
 .info-card {
@@ -19,4 +21,5 @@
   flex-direction: column;
   flex-grow: 1;
   justify-content: space-between;
+  background-color: white;
 }

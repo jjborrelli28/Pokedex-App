@@ -13,7 +13,7 @@ export default function PokeCard({ pokemon }) {
         <Card
           sx={{ maxWidth: 345 }}
           className="card animate__animated animate__fadeIn animate__slow "
-        gi>
+        >
           <CardMedia
             component="img"
             width="100%"

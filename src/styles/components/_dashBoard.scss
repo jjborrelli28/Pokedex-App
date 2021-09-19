@@ -1,0 +1,26 @@
+.container {
+  background-image: url("./background-light.png") !important;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  padding-bottom: 0px;
+  margin-bottom: 2rem;
+}
+
+.input-container {
+  input {
+    font-size: 1.25rem;
+  }
+  margin-bottom: 2rem;
+}
+
+@media screen and (max-width: 468px) {
+  .input-container {
+    display: flex;
+    input {
+      font-size: 1rem;
+      flex-grow: 1;
+    }
+    margin-bottom: 2rem;
+  }
+}

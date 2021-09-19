@@ -1,0 +1,15 @@
+.banner {
+  display: flex;
+  justify-content: center;
+  img {
+    width: 700px;
+  }
+}
+
+@media screen and (max-width: 468px) {
+  .banner {
+    img {
+      width: 100%;
+    }
+  }
+}

@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import { useFetchList } from "../helpers/useFetchList";
 import PokeCard from "./PokeCard";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
-import banner from "../styles/components/pokedex.jpeg";
+import Spinner from "./Spinner";
 
 export const Dashboard = () => {
   const [page, setPage] = useState({
@@ -40,33 +39,33 @@ export const Dashboard = () => {
   console.log(pokemons);
 
   return (
-    <Container>
-      <div className="banner">
-        <img src={banner} alt="banner" />
-      </div>
-      <Grid container spacing={2}>
-        {pokemons ? (
-          pokemons.map((pokemon) => (
-            <Grid item md={3} sm={4} xs={12} key={pokemon.name}>
-              <PokeCard pokemon={pokemon} key={pokemon.name} />
-            </Grid>
-          ))
-        ) : (
-          <h1>Loading</h1>
-        )}
-      </Grid>
-      {pokemons && (
-        <Stack spacing={2}>
-          <Pagination
-            count={count && Math.ceil(count / 20)}
-            variant="outlined"
-            color="primary"
-            page={page.number}
-            onChange={handleChange}
-            className="pagination"
-          />
-        </Stack>
+    <>
+      {pokemons ? (
+        <div className="container">
+          <div className="input-container">
+            <input type="text" placeholder="Search by name" />
+          </div>
+          <Grid container spacing={4}>
+            {pokemons.map((pokemon) => (
+              <Grid item lg={3} md={4} sm={6} xs={12} key={pokemon.name}>
+                <PokeCard pokemon={pokemon} key={pokemon.name} />
+              </Grid>
+            ))}
+          </Grid>
+          <Stack spacing={2}>
+            <Pagination
+              count={count && Math.ceil(count / 20)}
+              color="red"
+              page={page.number}
+              onChange={handleChange}
+              className="pagination"
+              variant="outlined"
+            />
+          </Stack>
+        </div>
+      ) : (
+        <Spinner />
       )}
-    </Container>
+    </>
   );
 };

@@ -21,6 +21,7 @@ export const createMyTheme = () => {
       rock: { contrastText: "#fff", main: "#8c3c1c" },
       steel: { contrastText: "#fff", main: "#60766e" },
       water: { contrastText: "#fff", main: "#0d51e2" },
+      red: { contrastText: "#fff", main: "#e4171b" },
     },
   });
 
