@@ -7,20 +7,60 @@
   margin-bottom: 2rem;
 }
 
-.input-container {
-  input {
-    font-size: 1.25rem;
-  }
+.console-container {
+  display: flex;
   margin-bottom: 2rem;
+  justify-content: end;
+}
+
+.input-container {
+  display: flex;
+  flex: 0 1 calc(25% - 1.5rem);
+  input {
+    font-size: 1rem;
+    padding: 0.33rem;
+    padding-left: 0.5rem;
+    border: none;
+    background-image: url("./background-dark.png") !important;
+    border-radius: 0.5rem 0px 0px 0.5rem;
+    color: white;
+    outline: none;
+    box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%),
+      0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+    flex-grow: 1;
+  }
+
+  button {
+    right: 0px;
+    border-radius: 0px 0.5rem 0.5rem 0px;
+    font-size: 1rem;
+    min-width: 0px !important;
+    width: 2rem !important;
+  }
+}
+
+@media screen and (max-width: 1182px) {
+  .input-container {
+    flex: 0 1 calc(33.33% - 1.5rem);
+  }
+}
+
+@media screen and (max-width: 882px) {
+  .input-container {
+    flex: 0 1 calc(50% - 1.5rem) !important;
+  }
+}
+
+@media screen and (max-width: 582px) {
+  .input-container {
+    flex: 0 1 100%;
+  }
 }
 
 @media screen and (max-width: 468px) {
   .input-container {
-    display: flex;
     input {
-      font-size: 1rem;
       flex-grow: 1;
     }
-    margin-bottom: 2rem;
   }
 }

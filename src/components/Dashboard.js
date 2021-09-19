@@ -5,6 +5,7 @@ import PokeCard from "./PokeCard";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import Spinner from "./Spinner";
+import Button from "@mui/material/Button";
 
 export const Dashboard = () => {
   const [page, setPage] = useState({
@@ -42,8 +43,13 @@ export const Dashboard = () => {
     <>
       {pokemons ? (
         <div className="container">
-          <div className="input-container">
-            <input type="text" placeholder="Search by name" />
+          <div className="console-container">
+            <div className="input-container">
+              <input type="text" placeholder="Search by name" />
+              <Button variant="contained" color="error">
+                <i className="fas fa-search"></i>
+              </Button>
+            </div>
           </div>
           <Grid container spacing={4}>
             {pokemons.map((pokemon) => (
@@ -55,11 +61,10 @@ export const Dashboard = () => {
           <Stack spacing={2}>
             <Pagination
               count={count && Math.ceil(count / 20)}
-              color="red"
+              color="error"
               page={page.number}
               onChange={handleChange}
               className="pagination"
-              variant="outlined"
             />
           </Stack>
         </div>

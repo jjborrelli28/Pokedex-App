@@ -9,7 +9,7 @@ export default function Spinner() {
       spacing={2}
       className="spinner"
     >
-      <LinearProgress color="red" />
+      <LinearProgress color="error" />
     </Stack>
   );
 }

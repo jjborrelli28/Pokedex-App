@@ -1,13 +1,15 @@
 .banner {
   display: flex;
   justify-content: center;
+  padding: 2rem;
   img {
-    width: 700px;
+    width: 500px;
   }
 }
 
 @media screen and (max-width: 468px) {
   .banner {
+    padding: 1rem;
     img {
       width: 100%;
     }
