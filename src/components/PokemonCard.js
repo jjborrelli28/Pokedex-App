@@ -6,14 +6,22 @@ import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import Chip from "@mui/material/Chip";
 import imageNoAvailable from "../styles/components/image-no-available.png";
+import { useHistory } from "react-router-dom";
 
 export default function PokemonCard({ pokemon }) {
+  let history = useHistory();
+
+  const handlePokemonSelect = () => {
+    history.push(`/dashboard/${pokemon.id}`);
+  };
+
   return (
     <>
       {pokemon && (
         <Card
           sx={{ maxWidth: 345 }}
           className="card animate__animated animate__fadeIn animate__slow "
+          onClick={handlePokemonSelect}
         >
           <CardMedia
             component="img"
@@ -23,7 +31,7 @@ export default function PokemonCard({ pokemon }) {
               imageNoAvailable
             }
             alt={pokemon.name}
-            className="image-card"
+            className="img-card"
           />
           <CardContent className="info-card">
             <div>

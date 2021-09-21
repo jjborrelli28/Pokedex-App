@@ -1,0 +1,22 @@
+.pokemon-page-container {
+  background-image: url("./background-light.png") !important;
+  padding: 2rem;
+  border-radius: 1rem;
+  margin-bottom: 2rem;
+}
+
+.name-id {
+  display: flex;
+  justify-content: center;
+  h1 {
+    background-color: white;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-radius: 0.75rem;
+    margin: 0px;
+  }
+
+  span {
+    color: #323232;
+  }
+}
