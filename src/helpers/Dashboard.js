@@ -1,21 +1,32 @@
 import React, { useEffect, useState } from "react";
 import Grid from "@mui/material/Grid";
 import { useFetchList } from "../helpers/useFetchList";
-import PokemonCard from "./PokemonCard";
+import PokeCard from "./PokeCard";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import Spinner from "./Spinner";
 import Button from "@mui/material/Button";
+import { useForm } from "../helpers/useForm";
+import { useDispatch, useSelector } from "react-redux";
+import { types } from "../types/types";
 
 export const Dashboard = () => {
-  const [page, setPage] = useState({
-    url: `https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20`,
-    number: 1,
-  });
+  const url = `https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20`;
 
-  const { list, count } = useFetchList(page.url);
+  const { list, count } = useFetchList(url);
+
+  const { search } = useSelector((state) => state.search);
+
+  const dispatch = useDispatch();
+
+  const listFilter =
+    list && list.filter((pokemon) => pokemon.name.includes(search));
 
   const [pokemons, setPokemons] = useState(null);
+
+  const { value, handleInputChange } = useForm();
+
+  console.log(listFilter);
 
   useEffect(() => {
     const promises =
@@ -29,12 +40,11 @@ export const Dashboard = () => {
 
   const handleChange = (event, value) => {
     event.preventDefault();
-    setPage({
-      url: `https://pokeapi.co/api/v2/pokemon/?offset=${
-        (value - 1) * 20
-      }&limit=20`,
-      number: value,
-    });
+  };
+
+  const handleSearch = () => {
+    const action = { type: types.search, payload: value };
+    dispatch(action);
   };
 
   console.log(pokemons);
@@ -45,8 +55,13 @@ export const Dashboard = () => {
         <div className="container">
           <div className="console-container">
             <div className="input-container">
-              <input type="text" placeholder="Search by name" />
-              <Button variant="contained" color="error">
+              <input
+                type="text"
+                placeholder="Search by name"
+                value={value}
+                onChange={handleInputChange}
+              />
+              <Button variant="contained" color="error" onClick={handleSearch}>
                 <i className="fas fa-search"></i>
               </Button>
             </div>
@@ -54,7 +69,7 @@ export const Dashboard = () => {
           <Grid container spacing={4}>
             {pokemons.map((pokemon) => (
               <Grid item lg={3} md={4} sm={6} xs={12} key={pokemon.name}>
-                <PokemonCard pokemon={pokemon} key={pokemon.name} />
+                <PokeCard pokemon={pokemon} key={pokemon.name} />
               </Grid>
             ))}
           </Grid>
@@ -62,7 +77,7 @@ export const Dashboard = () => {
             <Pagination
               count={count && Math.ceil(count / 20)}
               color="error"
-              page={page.number}
+              page={1}
               onChange={handleChange}
               className="pagination"
             />

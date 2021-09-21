@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import Chip from "@mui/material/Chip";
 
-export default function PokeCard({ pokemon }) {
+export default function PokemonCard({ pokemon }) {
   return (
     <>
       {pokemon && (
