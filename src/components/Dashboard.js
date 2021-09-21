@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Grid from "@mui/material/Grid";
 import { useFetchList } from "../helpers/useFetchList";
 import PokemonCard from "./PokemonCard";
@@ -9,6 +9,7 @@ import Button from "@mui/material/Button";
 import { useFetchPage } from "../helpers/useFetchPage";
 import { useDispatch } from "react-redux";
 import { types } from "../types/types";
+import { useFormSearch } from "../helpers/useFormSearch";
 
 export const Dashboard = () => {
   const { list, count } = useFetchList();
@@ -26,17 +27,28 @@ export const Dashboard = () => {
     dispatch(action);
   };
 
+  const { value, handleInputChange, handleInputSearch } = useFormSearch();
+
   return (
     <>
       {pokemons ? (
         <div className="container">
           <div className="console-container">
-            <div className="input-container">
-              <input type="text" placeholder="Search by name" />
-              <Button variant="contained" color="error">
+            <form className="input-container" onSubmit={handleInputSearch}>
+              <input
+                type="text"
+                placeholder="Search by name"
+                value={value}
+                onChange={handleInputChange}
+              />
+              <Button
+                variant="contained"
+                color="error"
+                onClick={handleInputSearch}
+              >
                 <i className="fas fa-search"></i>
               </Button>
-            </div>
+            </form>
           </div>
           <Grid container spacing={4}>
             {pokemons.map((pokemon) => (
