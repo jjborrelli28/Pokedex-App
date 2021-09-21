@@ -15,7 +15,7 @@ export const useFormSearch = () => {
     e.preventDefault();
     const action = {
       type: types.search,
-      payload: value,
+      payload: value.toLocaleLowerCase(),
     };
     dispatch(action);
   };

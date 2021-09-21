@@ -5,11 +5,11 @@ import PokemonCard from "./PokemonCard";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import Spinner from "./Spinner";
-import Button from "@mui/material/Button";
 import { useFetchPage } from "../helpers/useFetchPage";
 import { useDispatch } from "react-redux";
 import { types } from "../types/types";
 import { useFormSearch } from "../helpers/useFormSearch";
+import { FaSearch } from "react-icons/fa";
 
 export const Dashboard = () => {
   const { list, count } = useFetchList();
@@ -41,13 +41,9 @@ export const Dashboard = () => {
                 value={value}
                 onChange={handleInputChange}
               />
-              <Button
-                variant="contained"
-                color="error"
-                onClick={handleInputSearch}
-              >
-                <i className="fas fa-search"></i>
-              </Button>
+              <button onClick={handleInputSearch}>
+                <FaSearch />
+              </button>
             </form>
           </div>
           <Grid container spacing={4}>

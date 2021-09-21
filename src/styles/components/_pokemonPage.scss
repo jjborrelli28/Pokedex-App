@@ -8,6 +8,7 @@
 .name-id {
   display: flex;
   justify-content: center;
+  margin-bottom: 1rem;
   h1 {
     background-color: white;
     padding-left: 1rem;
@@ -19,4 +20,56 @@
   span {
     color: #323232;
   }
+}
+
+.pokemon-data-container {
+  background-color: white;
+  border-radius: 0.75rem;
+  display: flex;
+  justify-content: space-around;
+  flex: 0 1 calc(50% - 10rem) !important;
+}
+
+.pokemon-img-container {
+  padding: 1rem;
+  img {
+    border-radius: 0.75rem;
+    box-sizing: border-box;
+  }
+}
+
+.pokemon-info-container {
+  padding: 1rem;
+}
+
+.versions {
+  display: flex;
+  align-items: center;
+}
+
+.pokeball-blue {
+  color: #0072b0;
+  font-size: 300%;
+  font-weight: bold;
+  box-sizing: border-box;
+  margin-left: 1rem;
+}
+
+.pokeball-blue-select {
+  border: solid 0.2rem lighten($color: #0072b0, $amount: 15);
+  border-radius: 50%;
+}
+
+.pokeball-red {
+  color: #dd2d51;
+  color: #dd2d51;
+  font-size: 300%;
+  font-weight: bold;
+  box-sizing: border-box;
+  margin-left: 1rem;
+}
+
+.pokeball-red-select {
+  border: solid 0.2rem lighten($color: #dd2d51, $amount: 15);
+  border-radius: 50%;
 }
