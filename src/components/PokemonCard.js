@@ -5,6 +5,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import Chip from "@mui/material/Chip";
+import imageNoAvailable from "../styles/components/image-no-available.png";
 
 export default function PokemonCard({ pokemon }) {
   return (
@@ -19,7 +20,7 @@ export default function PokemonCard({ pokemon }) {
             width="100%"
             image={
               pokemon.sprites.other["official-artwork"]["front_default"] ||
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLu88Fd9lg3AJXHPXuZB7J0wuCzxX2SJFxcA&usqp=CAU"
+              imageNoAvailable
             }
             alt={pokemon.name}
             className="image-card"
@@ -27,11 +28,11 @@ export default function PokemonCard({ pokemon }) {
           <CardContent className="info-card">
             <div>
               <Typography variant="body2" color="text.secondary">
-                {(pokemon.order < 10 && `N° 00${pokemon.order}`) ||
-                  (pokemon.order >= 10 &&
-                    pokemon.order < 100 &&
-                    `N° 0${pokemon.order}`) ||
-                  (pokemon.order >= 100 && `N° ${pokemon.order}`)}
+                {(pokemon.id < 10 && `N.°00${pokemon.id}`) ||
+                  (pokemon.id >= 10 &&
+                    pokemon.id < 100 &&
+                    `N.°0${pokemon.id}`) ||
+                  (pokemon.id >= 100 && `N.°${pokemon.id}`)}
               </Typography>
               <Typography gutterBottom variant="h5" component="div">
                 {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}

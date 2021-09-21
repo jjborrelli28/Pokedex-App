@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Grid from "@mui/material/Grid";
 import { useFetchList } from "../helpers/useFetchList";
 import PokemonCard from "./PokemonCard";
@@ -6,38 +6,25 @@ import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import Spinner from "./Spinner";
 import Button from "@mui/material/Button";
+import { useFetchPage } from "../helpers/useFetchPage";
+import { useDispatch } from "react-redux";
+import { types } from "../types/types";
 
 export const Dashboard = () => {
-  const [page, setPage] = useState({
-    url: `https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20`,
-    number: 1,
-  });
+  const { list, count } = useFetchList();
 
-  const { list, count } = useFetchList(page.url);
+  const { pokemons, page } = useFetchPage(list);
 
-  const [pokemons, setPokemons] = useState(null);
-
-  useEffect(() => {
-    const promises =
-      list &&
-      list.map((pokemon) =>
-        fetch(pokemon.url).then((resp) => resp.json().then((data) => data))
-      );
-
-    promises && Promise.all(promises).then((result) => setPokemons(result));
-  }, [list]);
+  const dispatch = useDispatch();
 
   const handleChange = (event, value) => {
     event.preventDefault();
-    setPage({
-      url: `https://pokeapi.co/api/v2/pokemon/?offset=${
-        (value - 1) * 20
-      }&limit=20`,
-      number: value,
-    });
+    const action = {
+      type: types.pagination,
+      payload: value,
+    };
+    dispatch(action);
   };
-
-  console.log(pokemons);
 
   return (
     <>
@@ -60,9 +47,9 @@ export const Dashboard = () => {
           </Grid>
           <Stack spacing={2}>
             <Pagination
-              count={count && Math.ceil(count / 20)}
+              count={Math.ceil(count / 20)}
               color="error"
-              page={page.number}
+              page={page}
               onChange={handleChange}
               className="pagination"
             />

@@ -5,9 +5,10 @@ import {
   Redirect,
   Switch,
 } from "react-router-dom";
-import { Dashboard } from "../components/Dashboard";
 import Container from "@mui/material/Container";
+import { Dashboard } from "../components/Dashboard";
 import { Banner } from "../components/Banner";
+import { PokemonPage } from "../components/PokemonPage";
 
 export const AppRouter = () => {
   return (
@@ -16,6 +17,7 @@ export const AppRouter = () => {
         <Banner />
         <Switch>
           <Route exact path="/dashboard" component={Dashboard} />
+          <Route exact path="/dashboard/:pokemonId" component={PokemonPage} />
           <Redirect to="/dashboard" />
         </Switch>
       </Container>

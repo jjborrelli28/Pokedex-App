@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
-export const useFetchList = (url) => {
+export const useFetchList = () => {
+  const url = `https://pokeapi.co/api/v2/pokemon/?offset=0&limit=898`;
+
+  const { name } = useSelector((state) => state.search);
+
   const [state, setState] = useState({
     data: null,
     loading: null,
@@ -16,14 +21,18 @@ export const useFetchList = (url) => {
 
     fetch(url)
       .then((response) => response.json())
-      .then((data) =>
+      .then((data) => {
+        const filteredList = data.results.filter((pokemon) =>
+          pokemon.name.includes(name)
+        );
+
         setState({
-          list: data.results,
-          count: data.count,
+          list: filteredList,
+          count: filteredList.length,
           loading: null,
           error: null,
-        })
-      )
+        });
+      })
       .catch((error) =>
         setState({
           data: null,
@@ -31,7 +40,7 @@ export const useFetchList = (url) => {
           error,
         })
       );
-  }, [url]);
+  }, [url, name]);
 
   return state;
 };
