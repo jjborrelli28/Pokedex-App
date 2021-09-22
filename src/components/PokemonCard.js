@@ -7,11 +7,22 @@ import Stack from "@mui/material/Stack";
 import Chip from "@mui/material/Chip";
 import imageNoAvailable from "../styles/components/image-no-available.png";
 import { useHistory } from "react-router-dom";
+import { types } from "../types/types";
+import { useDispatch } from "react-redux";
 
 export default function PokemonCard({ pokemon }) {
   let history = useHistory();
 
+  const dispatch = useDispatch();
+
   const handlePokemonSelect = () => {
+    const action = {
+      type: types,
+      payload: "",
+    };
+
+    dispatch(action);
+
     history.push(`/dashboard/${pokemon.id}`);
   };
 
@@ -56,6 +67,7 @@ export default function PokemonCard({ pokemon }) {
                   color={type.type.name}
                   size="small"
                   key={type.type.name}
+                  className="chips"
                 />
               ))}
             </Stack>
