@@ -5,6 +5,7 @@ import Spinner from "./Spinner";
 import imageNoAvailable from "../styles/components/image-no-available.png";
 import { useTheme } from "@material-ui/core/styles";
 import { CgPokemon } from "react-icons/cg";
+import { useFetchSpecies } from "../helpers/useFetchSpecies";
 
 export const PokemonPage = () => {
   const { pokemonId } = useParams();
@@ -13,7 +14,7 @@ export const PokemonPage = () => {
     `https://pokeapi.co/api/v2/pokemon/${pokemonId}`
   );
 
-  const { data: species } = useFetchPokemon(
+  const { species, textBlue, textRed } = useFetchSpecies(
     `https://pokeapi.co/api/v2/pokemon-species/${pokemonId}/`
   );
 
@@ -21,12 +22,12 @@ export const PokemonPage = () => {
 
   const [showRed, setShowRed] = useState(false);
 
-  console.log(species);
-
   const { palette } = useTheme();
 
   console.log(data);
 
+  console.log(species);
+  
   return (
     <>
       {data && species ? (
@@ -51,23 +52,23 @@ export const PokemonPage = () => {
                 }
                 alt={data.name}
                 style={{
-                  border: `solid 0.33rem ${
+                  backgroundImage: `linear-gradient(to top, ${
                     palette[data.types[0].type.name].main
-                  }`,
+                  }, ${
+                    data.types[1]
+                      ? palette[data.types[1].type.name].main
+                      : `#ffffff`
+                  })`,
                 }}
               />
             </div>
             <div className="pokemon-info-container">
               <div className="text_entries">
                 <div className="text">
-                  <h3>
-                    {species["flavor_text_entries"][showBLue ? 1 : 2][
-                      "flavor_text"
-                    ].toLocaleUpperCase()}
-                  </h3>
+                  <h3>{showBLue ? textBlue : textRed}</h3>
                 </div>
                 <div className="versions">
-                  <h3>VERSIONS:</h3>
+                  <h3>Versions:</h3>
                   <CgPokemon
                     className={`pokeball-blue ${
                       showBLue && `pokeball-blue-select`
