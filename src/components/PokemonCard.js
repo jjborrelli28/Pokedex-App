@@ -17,7 +17,7 @@ export default function PokemonCard({ pokemon }) {
 
   const handlePokemonSelect = () => {
     const action = {
-      type: types,
+      type: types.search,
       payload: "",
     };
 

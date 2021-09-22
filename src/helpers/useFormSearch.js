@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { types } from "../types/types";
 
+
 export const useFormSearch = () => {
   const dispatch = useDispatch();
 
@@ -13,6 +14,7 @@ export const useFormSearch = () => {
 
   const handleInputSearch = (e) => {
     e.preventDefault();
+
     const action = {
       type: types.search,
       payload: value.toLocaleLowerCase(),

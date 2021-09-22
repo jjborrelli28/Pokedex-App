@@ -28,7 +28,6 @@ export const Dashboard = () => {
   };
 
   const { value, handleInputChange, handleInputSearch } = useFormSearch();
-
   return (
     <>
       {pokemons ? (
@@ -55,7 +54,7 @@ export const Dashboard = () => {
           </Grid>
           <Stack spacing={2}>
             <Pagination
-              count={Math.ceil(count / 20)}
+              count={count && Math.ceil(count / 20)}
               color="error"
               page={page}
               onChange={handleChange}

@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import Swal from "sweetalert2";
+import { types } from "../types/types";
 
 export const useFetchList = () => {
   const url = `https://pokeapi.co/api/v2/pokemon/?offset=0&limit=898`;
 
   const { name } = useSelector((state) => state.search);
+
+  const dispatch = useDispatch();
 
   const [state, setState] = useState({
     data: null,
@@ -26,12 +30,35 @@ export const useFetchList = () => {
           pokemon.name.includes(name)
         );
 
-        setState({
-          list: filteredList,
-          count: filteredList.length,
-          loading: null,
-          error: null,
-        });
+        if (filteredList.length !== 0) {
+          const action = {
+            type: types.pagination,
+            payload: 1,
+          };
+
+          dispatch(action);
+
+          setState({
+            list: filteredList,
+            count: filteredList.length,
+            loading: null,
+            error: null,
+          });
+        } else {
+          Swal.fire({
+            title: "Search error",
+            text: "No Pokemon matches your search",
+            icon: "error",
+            confirmButtonColor: "#b70004",
+            confirmButtonText: "Yes, delete it!",
+            showClass: {
+              popup: "animate__animated animate__fadeIn",
+            },
+            hideClass: {
+              popup: "animate__animated animate__fadeOut",
+            },
+          });
+        }
       })
       .catch((error) =>
         setState({
@@ -40,7 +67,7 @@ export const useFetchList = () => {
           error,
         })
       );
-  }, [url, name]);
+  }, [url, name, dispatch]);
 
   return state;
 };

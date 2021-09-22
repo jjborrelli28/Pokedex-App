@@ -77,19 +77,21 @@ export const PokemonPage = () => {
     <>
       {data && species ? (
         <div className="pokemon-page-container">
-          <div className="name-id animate__animated animate__fadeIn animate__slow">
+          <div className="main-row animate__animated animate__fadeIn animate__slow">
             <button className="btn-prev-next" onClick={handlePrevius}>
               <GrPrevious />
             </button>
-            <h1>
-              {data.name.charAt(0).toUpperCase() + data.name.slice(1)}{" "}
-              <span>
-                {" "}
-                {(data.id < 10 && `N.°00${data.id}`) ||
-                  (data.id >= 10 && data.id < 100 && `N.°0${data.id}`) ||
-                  (data.id >= 100 && `N.°${data.id}`)}
-              </span>
-            </h1>
+            <div className="name-id">
+              <h1>{data.name.charAt(0).toUpperCase() + data.name.slice(1)} </h1>
+              <h1>
+                <span>
+                  {" "}
+                  {(data.id < 10 && `N.°00${data.id}`) ||
+                    (data.id >= 10 && data.id < 100 && `N.°0${data.id}`) ||
+                    (data.id >= 100 && `N.°${data.id}`)}
+                </span>
+              </h1>
+            </div>
             <button className="btn-prev-next" onClick={handleNext}>
               <GrNext />
             </button>
@@ -166,7 +168,7 @@ export const PokemonPage = () => {
                   </h5>
                   <p>Abilities</p>
                   {data.abilities.map((ability) => (
-                    <h5 key={ability}>
+                    <h5 key={ability.ability.name}>
                       {ability.ability.name.charAt(0).toUpperCase() +
                         ability.ability.name.slice(1)}
                     </h5>
@@ -184,7 +186,7 @@ export const PokemonPage = () => {
                       }
                       color={type.type.name}
                       size="medium"
-                      key={Date.parse(new Date())}
+                      key={type.type.name}
                       className="chips chip-pokemon-page"
                     />
                   ))}
@@ -198,7 +200,7 @@ export const PokemonPage = () => {
                       }
                       color={weakness}
                       size="medium"
-                      key={Date.parse(new Date())}
+                      key={weakness}
                       className="chips chip-pokemon-page"
                     />
                   ))}
