@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Swal from "sweetalert2";
 import { types } from "../types/types";
+import Swal from "sweetalert2";
 
 export const useFetchList = () => {
   const url = `https://pokeapi.co/api/v2/pokemon/?offset=0&limit=898`;
@@ -50,7 +50,7 @@ export const useFetchList = () => {
             text: "No Pokemon matches your search",
             icon: "error",
             confirmButtonColor: "#b70004",
-            confirmButtonText: "Yes, delete it!",
+            confirmButtonText: "Ok!",
             showClass: {
               popup: "animate__animated animate__fadeIn",
             },

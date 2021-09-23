@@ -13,6 +13,7 @@ import Chip from "@mui/material/Chip";
 import { useHistory } from "react-router-dom";
 import { GrNext } from "react-icons/gr";
 import { GrPrevious } from "react-icons/gr";
+import Swal from "sweetalert2";
 
 export const PokemonPage = () => {
   const { pokemonId } = useParams();
@@ -62,14 +63,44 @@ export const PokemonPage = () => {
   };
 
   const handlePrevius = () => {
-    if (pokemonId !== 1) {
+    if (parseInt(pokemonId) !== 1) {
       history.push(`/dashboard/${parseInt(pokemonId) - 1}`);
+      setShowBLue(true);
+      setShowRed(false);
+    } else {
+      Swal.fire({
+        title: "This is the first Pokemon on the list",
+        icon: "info",
+        confirmButtonColor: "#b70004",
+        confirmButtonText: "Ok!",
+        showClass: {
+          popup: "animate__animated animate__fadeIn",
+        },
+        hideClass: {
+          popup: "animate__animated animate__fadeOut",
+        },
+      });
     }
   };
 
   const handleNext = () => {
-    if (pokemonId !== 898) {
+    if (parseInt(pokemonId) !== 898) {
       history.push(`/dashboard/${parseInt(pokemonId) + 1}`);
+      setShowBLue(true);
+      setShowRed(false);
+    } else {
+      Swal.fire({
+        title: "This is the last Pokemon on the list",
+        icon: "info",
+        confirmButtonColor: "#b70004",
+        confirmButtonText: "Ok!",
+        showClass: {
+          popup: "animate__animated animate__fadeIn",
+        },
+        hideClass: {
+          popup: "animate__animated animate__fadeOut",
+        },
+      });
     }
   };
 
